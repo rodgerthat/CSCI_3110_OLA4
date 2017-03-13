@@ -1,0 +1,8 @@
+# ignore everything
+*
+
+#except this fellah
+!.gitignore
+!*.h
+!*.cpp
+
