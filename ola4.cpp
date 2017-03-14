@@ -27,10 +27,9 @@ using std::iterator;
 
 const char * FILENAME = "inventory.txt";
 
+// create a list of pointers to hold references to the StoreItems
 list <StoreItem *> storeInventory;
 list <StoreItem *>::iterator it;
-Book defaultBook;
-Movie defaultMovie;
 
 void clearScreen(void);
 void printMainMenu(void);
@@ -40,42 +39,9 @@ void listInventory(list<StoreItem *>::iterator it, list<StoreItem *>& storeInven
 int main()
 {
 
-	// create a list of pointers to hold references to the StoreItems
 	char userInput;		// holder for user's menu choice
 
-	// read in file data, add items to storeInventory list
-	ifstream inFile;
-	string line;
-
-	inFile.open(FILENAME);
-
-	// get each line in the text file, 
-	// as long as there are lines to get, do stuff. 
-	// |Movie|2000|Spider-Man 3|Sam Raimi|19.99|5|0|
-	while( getline(inFile, line ) ) {
-
-		// check if it's a book or a movie
-		// because a string is just a char array...
-		if ( line[1] == 'M' ) {
-
-			// create a new Movie object and add to list
-			cout << "New Movie created" << endl;
-			cout << defaultMovie.createFromString(line) << endl << endl;
-			storeInventory.push_back(defaultMovie.createFromString(line));
-			
-
-		} 
-		// technically, if it's not a Movie it's a book, 
-		// but I feel like I should check...
-		if (line[1] == 'B') {
-
-			// create a new Book object and add it to the list
-			cout << "New Book created" << endl;
-			cout << defaultBook.createFromString(line) << endl << endl;
-			storeInventory.push_back(defaultBook.createFromString(line));
-		}
-
-    }
+	readInFile(FILENAME);
 
 	// sort the list based on barcode
 	//sortStoreInventory();
@@ -148,7 +114,36 @@ void clearScreen() {
 
 void readInFile( const char *filename) {
 
+	// read in file data, add items to storeInventory list
+	ifstream inFile;
+	string line;
 
+	inFile.open(FILENAME);
+
+	// get each line in the text file, 
+	// as long as there are lines to get, do stuff. 
+	// |Movie|2000|Spider-Man 3|Sam Raimi|19.99|5|0|
+	while( getline(inFile, line ) ) {
+
+		// check if it's a book or a movie
+		// because a string is just a char array...
+		if ( line[1] == 'M' ) {
+
+			// create a new Movie object and add to list
+			Movie* movie = new Movie();
+			storeInventory.push_back(movie->createFromString(line));
+
+		} 
+		// technically, if it's not a Movie it's a book, 
+		// but I feel like I should check...
+		if (line[1] == 'B') {
+
+			// create a new Book object and add it to the list
+			Book* book = new Book();
+			storeInventory.push_back(book->createFromString(line));
+		}
+
+    }
 
 }
 
@@ -163,14 +158,16 @@ void listInventory(list<StoreItem *>::iterator it, list<StoreItem *>& storeInven
 	*/
 
 	// verify list contents
+	/*
 	for (auto item : storeInventory) {
 		cout << item << endl;
 	}
+	*/
 
 	// c++11 version, i'd still like to know how to do it the c++98 way tho...
-	/*	for (auto item : storeInventory) {
+	for (auto item : storeInventory) {
 		item->printItem();
 	}
-	*/
+	
 
 }

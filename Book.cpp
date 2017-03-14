@@ -31,8 +31,6 @@ std::string Book::getAuthor() const
 }
 
 Book* Book::createFromString( const string info ) {
-	
-	Book book;
 
 	// parse the string
 	stringstream ss(info);
@@ -44,18 +42,18 @@ Book* Book::createFromString( const string info ) {
 		//cout << data << endl;
 		switch (i) {
 		case 0: break;	// discard first piece of data, type, movie or book
-		case 1: book.m_barcode = data; break;
-		case 2: book.m_title = data; break;
-		case 3: book.m_author = data; break;
-		case 4: book.m_price = stod(data); break;
-		case 5: book.m_copy = stoi(data); break;
-		case 6: book.m_demand = stoi(data); break;
+		case 1: m_barcode = data; break;
+		case 2: m_title = data; break;
+		case 3: m_author = data; break;
+		case 4: m_price = stod(data); break;
+		case 5: m_copy = stoi(data); break;
+		case 6: m_demand = stoi(data); break;
 
 		}
 
 	}
 	
-	return &book;
+	return this;
 
 }
 
