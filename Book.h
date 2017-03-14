@@ -37,14 +37,14 @@ public:
 
     std::string getAuthor() const;
 
-    //This function returns a dynamically created StoreItem object
+    //This function returns a dynamically created Book object
     //which is created from a string.
     //The string info must be of the line format specificed in
     //inventory.txt
-    Book* createFromString( const std::string info) override;
+    Book* createFromString( const std::string info);
 
     //Print current item to the screen
-    void printItem() override;
+    void printItem();
 
 private:
     std::string m_title;        // movie title

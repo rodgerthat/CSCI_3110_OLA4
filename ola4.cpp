@@ -10,6 +10,7 @@
 #include <string>
 #include <fstream>
 #include <sstream>
+#include <list>
 
 #include "StoreItem.h"
 #include "Movie.h"

@@ -1,13 +1,16 @@
 /*
  * Author: Norris, Joel R.
  * Date: Mar 13, 2017
- * File: ola4.cpp
+ * File: StoreItem.h
  * As a part of the 3110 assignment, this file
- * contains the base abstract class for the store items
+ * contains the definition of the 
+ * base abstract class for the store items
  */
 
 #include <string>
 #include <iostream>
+
+using std::string;
 
 // assume the delimiter never appears in the book information
 const char DELIMITER = '|'; 
@@ -24,7 +27,7 @@ public:
         std::cout << "Destructor called" << std::endl;
     }
 
-    //Get movie title
+    //Get barcode
     std::string getBarcode( void ) const;
 
     //Get price
@@ -70,7 +73,7 @@ public:
 
 protected:
     std::string m_barcode;  // bar code
-    float       m_price;    // the retail price of the item
+    double       m_price;    // the retail price of the item
     int         m_copy;     // # of copies available in the store.
     int         m_demand;   // # of copies to be ordered};
 };

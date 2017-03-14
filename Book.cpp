@@ -7,7 +7,6 @@
  * a store
  */
 
-
 #include "Book.h"
 
 Book::Book(string title, string author, string barcode, double price, int copy, int demand )
@@ -19,17 +18,29 @@ Book::Book(string title, string author, string barcode, double price, int copy, 
 
 }
 
+std::string Book::getTitle() const
+{
+	return std::string();
+}
+
+std::string Book::getAuthor() const
+{
+	return std::string();
+}
+
 Book* Book::createFromString( const string info ) {
 	
 	// parse the string
 	stringstream ss(info);
 	string data;
 
-	while (getline(ss, data, '|')) {
+	while (getline(ss, data, DELIMITER)) {
 
 		cout << data << endl;
 
 	}
+
+	return this;
 
 }
 

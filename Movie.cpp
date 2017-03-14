@@ -15,8 +15,18 @@ Movie::Movie(string title, string director, string barcode, double price, int co
 	StoreItem(barcode, price, copy, demand) 
 {
 
+	// do nothing. because we're doing this for polymorphism!
 
+}
 
+std::string Movie::getTitle() const
+{
+	return m_title;
+}
+
+std::string Movie::getDirector() const
+{
+	return m_director;
 }
 
 Movie* Movie::createFromString( const string info ) {
@@ -25,11 +35,13 @@ Movie* Movie::createFromString( const string info ) {
 	stringstream ss(info);
 	string data;
 
-	while (getline(ss, data, '|')) {
+	while (getline(ss, data, DELIMITER)) {
 
 		cout << data << endl;
 
 	}
+
+	return this;
 
 }
 
@@ -43,6 +55,6 @@ void Movie::printItem() {
 	cout << "# of copy\t\t" << m_copy << endl;
 	cout << "# of demand\t\t" << m_demand << endl;
 	cout << endl;
-	
 
 }
+

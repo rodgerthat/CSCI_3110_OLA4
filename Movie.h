@@ -36,14 +36,14 @@ public:
 
     std::string getDirector() const;
 
-    //This function returns a dynamically created StoreItem object
+    //This function returns a dynamically created Movie object
     //which is created from a string.
     //The string info must be of the line format specificed in
     //inventory.txt
-    Movie* createFromString( const std::string info) override;
+    Movie* createFromString( const std::string info);
 
     //Print current item to the screen
-    void printItem() override;
+    void printItem();
 
 private:
     std::string m_title;        // movie title
