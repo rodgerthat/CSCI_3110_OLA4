@@ -1,21 +1,21 @@
 /*
  * Author: Zhijiang Dong
  * Date: Jan 15, 2007
- * File: Movie.h
+ * File: Book.h
  * As a part of the 3110 assignment, this file
- * defines a class Movie, which will be sold in 
+ * defines a class Book, which will be sold in 
  * a store
  */
 
-#include <iostream>
 #include <string>
+#include <iostream>
 #include <sstream>
 
 /*
  * No methods are provided to modify movie information.
- * Movie information should be stable, whch means whenever
- * you get a movie object, you are not supposed to
- * change movie information such as title, and director.
+ * Book information should be stable, whch means whenever
+ * you get a book object, you are not supposed to
+ * change book information such as title, and author.
  */
 
 #include "StoreItem.h"
@@ -25,27 +25,28 @@ using std::stringstream;
 using std::cout;
 using std::endl;
 
-class Movie : public StoreItem
+
+class Book : public StoreItem
 {
 public:
     //default constructor setting every thing to empty or 0
-    Movie( std::string title="", std::string director="",
+    Book( std::string title="", std::string author="",
         std::string barcode="", double price=0, int copy=0, int demand=0);
 
     std::string getTitle() const;
 
-    std::string getDirector() const;
+    std::string getAuthor() const;
 
     //This function returns a dynamically created StoreItem object
     //which is created from a string.
     //The string info must be of the line format specificed in
     //inventory.txt
-    Movie* createFromString( const std::string info) override;
+    Book* createFromString( const std::string info) override;
 
     //Print current item to the screen
     void printItem() override;
 
 private:
     std::string m_title;        // movie title
-    std::string m_director;     // movie directors
+    std::string m_author;		// movie directors
 };

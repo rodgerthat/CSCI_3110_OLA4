@@ -1,4 +1,10 @@
-#pragma once
+/*
+ * Author: Norris, Joel R.
+ * Date: Mar 13, 2017
+ * File: ola4.cpp
+ * As a part of the 3110 assignment, this file
+ * contains the base abstract class for the store items
+ */
 
 #include <string>
 #include <iostream>

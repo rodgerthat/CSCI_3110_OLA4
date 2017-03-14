@@ -1,23 +1,45 @@
-// ola4.cpp : Defines the entry point for the console application.
-//
+/*
+ * Author: Norris, Joel R.
+ * Date: Mar 13, 2017
+ * File: ola4.cpp
+ * As a part of the 3110 assignment, this file
+ * contains the main program logic for the store
+ */
 
 #include <iostream>
+#include <string>
+#include <fstream>
+#include <sstream>
+
+#include "StoreItem.h"
+#include "Movie.h"
+//#include "Book.h"
 
 using std::cout;
 using std::cin;
 using std::endl;
+using std::string;
+using std::ifstream;
+using std::stringstream;
+
+const char * FILENAME = "inventory.txt";
 
 void clearScreen();
 void printMainMenu();
 
+void readInFile(const char * filename);
+
 int main()
 {
+
+	// read in file data first
+	readInFile(FILENAME);
 
 	char userInput;		// holder for user's menu choice
 
 	do {
 
-		clearScreen();
+		//clearScreen();	// TODO: put this back in
 		printMainMenu();
 
 		cout << "Please enter your command (M, B, L, R, C, Q):  ";
@@ -73,6 +95,80 @@ void printMainMenu() {
 void clearScreen() {
 
 	//out << "\033[2J\033[1;1H";		// works on linux
-	system("cls");	// I read that this is bad, but I am unsure of what to do on windows
+	system("cls");	// I read that system calls are bad, but I am unsure of what to do on windows
+
+}
+
+void readInFile( const char *filename) {
+
+	ifstream inFile;
+
+	inFile.open(filename);
+
+	string aStringVariable;
+	string aVariable;
+	string stringVariable2HoldValue;
+	
+	string line;
+
+	while( getline(inFile, line ) ) {
+
+		//stringstream ss(line);
+		//ss >> aVariable;
+		//getline(ss, data, '|');
+
+		// |Movie|2000|Spider-Man 3|Sam Raimi|19.99|5|0|
+
+		// check if it's a book or a movie
+		if ( line[1] == 'M' ) {
+
+			// create a new Movie object and add to list
+			Movie movie(line);
+		} 
+		// technically, if it's not a Movie it's a book, 
+		// but I feel like I should check...
+		if (line[1] == 'B') {
+
+			// create a new Book object and add it to the list
+			//Book book(line);
+			cout << "New book created! YAY!" << endl;
+		}
+
+		//stringstream ss(line);
+
+		// save this madness for in the class...
+		// you just have to pass each class a string in the constructor...
+		/*
+		ss >> mediaType
+			>> barCode
+			>> title
+			>> author_director
+			>> price
+			>> copies
+			>> demand;
+		cout << "line : " << line << endl;
+
+		cout << line[0] << endl;
+		cout << line[1] << endl;
+		cout << line[3] << endl;
+		cout << endl;
+
+		ss >> aVariable;
+
+		getline(ss, stringVariable2HoldValue, '|'); 
+
+		cout << "stringVariable2HoldValue : " << stringVariable2HoldValue << endl;
+
+		cout << endl;
+		*/
+
+		//stringstream ss(aStringVariable);
+
+		//ss >> aVariable;
+
+		//getline(ss, stringVariable2HoldValue, '|');
+
+    }
+
 
 }
