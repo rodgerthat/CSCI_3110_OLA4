@@ -7,6 +7,7 @@
  * a store
  */
 
+#pragma once
 #include <string>
 #include <iostream>
 #include <sstream>
@@ -32,6 +33,9 @@ public:
     //default constructor setting every thing to empty or 0
     Book( std::string title="", std::string author="",
         std::string barcode="", double price=0, int copy=0, int demand=0);
+
+	// destructor
+	~Book();
 
     std::string getTitle() const;
 

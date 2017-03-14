@@ -14,8 +14,10 @@ Book::Book(string title, string author, string barcode, double price, int copy, 
 	StoreItem(barcode, price, copy, demand) 
 {
 
+}
 
-
+Book::~Book() {
+	cout << "Book Destructor called" << endl;
 }
 
 std::string Book::getTitle() const
@@ -30,17 +32,30 @@ std::string Book::getAuthor() const
 
 Book* Book::createFromString( const string info ) {
 	
+	Book book;
+
 	// parse the string
 	stringstream ss(info);
 	string data;
+	int i = 0;
 
 	while (getline(ss, data, DELIMITER)) {
 
-		cout << data << endl;
+		//cout << data << endl;
+		switch (i) {
+		case 0: break;	// discard first piece of data, type, movie or book
+		case 1: book.m_barcode = data; break;
+		case 2: book.m_title = data; break;
+		case 3: book.m_author = data; break;
+		case 4: book.m_price = stod(data); break;
+		case 5: book.m_copy = stoi(data); break;
+		case 6: book.m_demand = stoi(data); break;
+
+		}
 
 	}
-
-	return this;
+	
+	return &book;
 
 }
 

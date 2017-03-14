@@ -6,13 +6,13 @@
  * contains the definition of the 
  * base abstract class for the store items
  */
-
+#pragma once
 #include <string>
 #include <iostream>
 
 using std::string;
 
-// assume the delimiter never appears in the book information
+// assumeauthor delimiter never appears in the book information
 const char DELIMITER = '|'; 
 
 class StoreItem
@@ -25,6 +25,7 @@ public:
     virtual ~StoreItem()
     {
         std::cout << "Destructor called" << std::endl;
+		std::cout << this << std::endl;
     }
 
     //Get barcode

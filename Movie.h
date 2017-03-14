@@ -7,6 +7,7 @@
  * a store
  */
 
+#pragma once
 #include <iostream>
 #include <string>
 #include <sstream>
@@ -31,6 +32,9 @@ public:
     //default constructor setting every thing to empty or 0
     Movie( std::string title="", std::string director="",
         std::string barcode="", double price=0, int copy=0, int demand=0);
+
+	//destructor
+	~Movie();
 
     std::string getTitle() const;
 
