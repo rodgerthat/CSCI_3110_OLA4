@@ -53,4 +53,5 @@ public:
 private:
     std::string m_title;        // movie title
     std::string m_author;		// movie directors
+	std::string m_date;			// date published
 };

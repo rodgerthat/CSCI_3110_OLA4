@@ -25,7 +25,6 @@ public:
     virtual ~StoreItem()
     {
         std::cout << "Destructor called" << std::endl;
-		std::cout << this << std::endl;
     }
 
     //Get barcode
@@ -74,7 +73,7 @@ public:
 
 protected:
     std::string m_barcode;  // bar code
-    double       m_price;    // the retail price of the item
+    double      m_price;    // the retail price of the item
     int         m_copy;     // # of copies available in the store.
     int         m_demand;   // # of copies to be ordered};
 };

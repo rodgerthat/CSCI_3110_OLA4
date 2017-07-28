@@ -10,7 +10,7 @@
 #include "Book.h"
 
 Book::Book(string title, string author, string barcode, double price, int copy, int demand )
-	: m_title(""), m_author(""),
+	: m_title(title), m_author(author),
 	StoreItem(barcode, price, copy, demand) 
 {
 
@@ -20,16 +20,19 @@ Book::~Book() {
 	cout << "Book Destructor called" << endl;
 }
 
-std::string Book::getTitle() const
+string Book::getTitle() const
 {
-	return std::string();
+	return m_title;
 }
 
-std::string Book::getAuthor() const
+string Book::getAuthor() const
 {
-	return std::string();
+	return m_author;
 }
 
+// populate the book object w/ data based on incomming string.
+// |Book|1009|C++ Programming: From Problem Analysis to Program Design, Fourth Edition|D.S. Malik|Feb 12, 2008|114.95|9|0|
+// |Type|barcode|title|author|date|price|copy|demand|
 Book* Book::createFromString( const string info ) {
 
 	// parse the string
@@ -39,17 +42,21 @@ Book* Book::createFromString( const string info ) {
 
 	while (getline(ss, data, DELIMITER)) {
 
-		//cout << data << endl;
-		switch (i) {
-		case 0: break;	// discard first piece of data, type, movie or book
-		case 1: m_barcode = data; break;
-		case 2: m_title = data; break;
-		case 3: m_author = data; break;
-		case 4: m_price = stod(data); break;
-		case 5: m_copy = stoi(data); break;
-		case 6: m_demand = stoi(data); break;
+		//cout << i << " : " << data << endl;
 
+		switch (i) {
+			case 0: 	// discard first two pieces of data, the initial |, that starts off each line, then the type, movie or book
+			case 1: break;
+			case 2: m_barcode	= data; break;
+			case 3: m_title		= data; break;
+			case 4: m_author	= data; break;
+			case 5: m_date		= data; break;
+			case 6: m_price		= stod(data); break;
+			case 7: m_copy		= stoi(data); break;
+			case 8: m_demand	= stoi(data); break;
 		}
+
+		++i;	// iterator! iterate!
 
 	}
 	
@@ -60,12 +67,13 @@ Book* Book::createFromString( const string info ) {
 // prints out all the relevant movie data
 void Book::printItem() {
 	
-	cout << "********************** Movie with barcode " << m_barcode << " **********************" << endl;
-	cout << "Title\t\t"		<< m_title << endl;
-	cout << "Author\t\t"	<< m_author << endl;
-	cout << "Price\t\t"		<< m_price << endl;
-	cout << "# of copy\t\t" << m_copy << endl;
-	cout << "# of demand\t\t" << m_demand << endl;
+	cout << "********************** Book with barcode " << m_barcode << " **********************" << endl;
+	cout << "Title:\t\t"		<< m_title	<< endl;
+	cout << "Author:\t\t"		<< m_author << endl;
+	cout << "Publish Date:\t"	<< m_date	<< endl;
+	cout << "Price:\t\t"		<< m_price	<< endl;
+	cout << "# of copy:\t"		<< m_copy	<< endl;
+	cout << "# of demand:\t"	<< m_demand << endl;
 	cout << endl;
 
 }
